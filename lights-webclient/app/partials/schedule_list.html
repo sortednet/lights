@@ -1,0 +1,10 @@
+
+<H1>Schedule list</H1>
+
+
+<ul >
+    <li ng-repeat="(name, schedule) in schedules" >
+        <span>{{name}}</span>: <span>{{schedule.description}}</span>
+        <a href="#/schedules/{{name}}">{{name}}</a>
+    </li>
+</ul>

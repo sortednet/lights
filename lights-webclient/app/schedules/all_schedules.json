@@ -1,22 +1,59 @@
-[
-  {
-    "name": "summer",
+{
+  "summer": {
     "description": "Schedule for a nice summers night",
     "lights": [
-      {"id": 0, "wait": "60", "onFor": 180 },
-      {"id": 1, "wait": "10", "onFor": 120 },
-      {"id": 2, "wait": "30", "onFor": 210 },
-      {"id": 3, "wait": "00", "onFor": 180 }
+      {
+        "id": "Palm Spot",
+        "wait": "60",
+        "onFor": 180
+      },
+      {
+        "id": "left border 1",
+        "wait": "10",
+        "onFor": 120
+      },
+      {
+        "id": "right border 1",
+        "wait": "30",
+        "onFor": 210
+      },
+      {
+        "id": "right border 2",
+        "wait": "00",
+        "onFor": 180
+      }
     ]
   },
-  {
-    "name": "winter",
+  "winter": {
     "description": "Schedule for a winter night",
     "lights": [
-      {"id": 0, "wait": "00", "onFor": 240 },
-      {"id": 1, "wait": "10", "onFor": 240 },
-      {"id": 2, "wait": "30", "onFor": 210 },
-      {"id": 3, "wait": "00", "onFor": 180 }
+      {
+        "id": "Palm Spot",
+        "wait": "00",
+        "onFor": 240
+      },
+      {
+        "id": "left border 1",
+        "wait": "10",
+        "onFor": 240
+      },
+      {
+        "id": "right border 1",
+        "wait": "30",
+        "onFor": 210
+      },
+      {
+        "id": "right border 2",
+        "wait": "00",
+        "onFor": 180
+      },
+      {
+        "id": "flood 1",
+        "wait": "00",
+        "onFor": 180
+      }
     ]
   }
-]
+}
+
+

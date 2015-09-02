@@ -1,0 +1,11 @@
+<p>Details of schedule <b>{{scheduleName}}</b></p>
+<p>Description {{schedule.description}}</p>
+
+<table width="100%">
+    <tr><th>Light</th><th>Wait</th><th>On For</th></tr>
+    <tr ng-repeat="light in schedule.lights">
+        <td>{{light.id}}</td>
+        <td>{{light.wait}}</td>
+        <td>{{light.onFor}}</td>
+    </tr>
+</table>
