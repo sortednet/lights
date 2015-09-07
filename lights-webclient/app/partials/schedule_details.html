@@ -1,4 +1,4 @@
-<p>Details of schedule <b>{{scheduleName}}</b></p>
+<p>Details of schedule <b>{{schedule.name}}</b></p>
 <p>Description {{schedule.description}}</p>
 
 <table width="100%">
@@ -6,6 +6,6 @@
     <tr ng-repeat="light in schedule.lights">
         <td>{{light.id}}</td>
         <td>{{light.wait}}</td>
-        <td>{{light.onFor}}</td>
+        <td>{{light.onForSeconds}}</td>
     </tr>
 </table>

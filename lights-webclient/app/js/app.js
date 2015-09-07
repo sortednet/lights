@@ -19,7 +19,7 @@ lightsApp.config(['$routeProvider',
                 templateUrl: 'partials/schedule_list.html',
                 controller: 'ScheduleListCtrl'
             }).
-            when('/schedules/:scheduleName', {
+            when('/schedules/:scheduleId', {
                 templateUrl: 'partials/schedule_details.html',
                 controller: 'ScheduleDetailsCtrl'
             }).

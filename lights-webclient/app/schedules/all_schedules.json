@@ -1,5 +1,7 @@
-{
-  "summer": {
+[
+  {
+    "id": "0",
+    "name": "summer",
     "description": "Schedule for a nice summers night",
     "lights": [
       {
@@ -24,7 +26,9 @@
       }
     ]
   },
-  "winter": {
+  {
+    "id": "1",
+    "name": "winter",
     "description": "Schedule for a winter night",
     "lights": [
       {
@@ -54,6 +58,6 @@
       }
     ]
   }
-}
+]
 
 

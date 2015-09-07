@@ -3,8 +3,8 @@
 
 
 <ul >
-    <li ng-repeat="(name, schedule) in schedules" >
-        <span>{{name}}</span>: <span>{{schedule.description}}</span>
-        <a href="#/schedules/{{name}}">{{name}}</a>
+    <li ng-repeat="schedule in schedules" >
+        <span>{{schedule.name}}</span>: <span>{{schedule.description}}</span>
+        <a href="#/schedules/{{schedule.id}}">{{schedule.name}}</a>
     </li>
 </ul>
