@@ -4,30 +4,62 @@
 
 var lightControllers = angular.module('lightControllers', []);
 
-lightControllers.controller('ScheduleListCtrl', ['$scope', '$http',
-    function($scope, $http) {
-        $http.get('http://localhost:8080/schedules').success(function(data) {
-            console.log("Loaded ",data);
-            $scope.schedules = data;
-        }).error(function(response) {
-            console.error("Could not load data ", response);
+lightControllers.controller('ScheduleListCtrl', ['$scope', 'Schedules',
+    function($scope, Schedules) {
+        $scope.schedules = Schedules.query();
+    }
+]);
 
+lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'Schedules',
+    function($scope, $routeParams, Schedules) {
+
+        $scope.editing = {}
+
+        Schedules.get({id: $routeParams.scheduleId}, function(schedule) {
+            $scope.schedule = schedule;
         });
 
-    }]);
+        $scope.updateSchedule = function() {
+            console.log("Updating schedule "+$scope.schedule.id+" with description "+$scope.schedule.description);
+            console.log("update fn "+$scope.schedule.$update);
+            //$scope.schedule.$save();
+            $scope.schedule.$update({ id:$scope.schedule.id}, function() {
+                console.log("updated");
+            })
+        }
 
-lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', '$http',
-    function($scope, $routeParams, $http) {
+        $scope.getTemplate = function (light) {
+            if (light.id === $scope.editing.id) return 'edit';
+            else return 'display';
+        };
 
-        var url = "http://localhost:8080/schedule?id="+$routeParams.scheduleId;
-        $http.get(url).success(function(data) {
-            $scope.schedule = data;
-        });
+        $scope.editLight = function (light) {
+            $scope.editing = angular.copy(light);
+        };
 
-        //$http.get('schedules/all_schedules.json').success(function(data) {
-        //    var id = $routeParams.scheduleId;
-        //    var filtered=data.filter(function(s) { return s.id == id});
-        //    $scope.schedule = filtered[0];
-        //});
-    }]);
+        $scope.deleteLight = function (light) {
+            var idx = $scope.schedule.lights.indexOf(light);
+            $scope.schedule.lights.splice(idx, 1);
+            $scope.updateSchedule();
+            $scope.reset();
+        };
+
+        $scope.addLight = function () {
+            $scope.schedule.lights.push({id:-1, wait:0, onForSeconds:0})
+            $scope.editing = $scope.schedule.lights[ $scope.schedule.lights.length -1];
+        };
+
+        $scope.saveLight = function (idx) {
+            console.log("Saving light");
+            $scope.schedule.lights[idx] = angular.copy($scope.editing);
+            $scope.updateSchedule();
+            $scope.reset();
+        };
+
+        $scope.reset = function () {
+            $scope.editing = {};
+        };
+    }
+]);
+
 

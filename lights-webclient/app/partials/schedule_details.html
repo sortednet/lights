@@ -1,11 +1,39 @@
-<p>Details of schedule <b>{{schedule.name}}</b></p>
-<p>Description {{schedule.description}}</p>
+
+<form ng-submit="updateSchedule()">
+<p>Details of schedule <input type="text" ng-model="schedule.name"/></p>
+<p>Description <input type="text" ng-model="schedule.description"/></p>
 
 <table width="100%">
-    <tr><th>Light</th><th>Wait</th><th>On For</th></tr>
-    <tr ng-repeat="light in schedule.lights">
-        <td>{{light.id}}</td>
-        <td>{{light.wait}}</td>
-        <td>{{light.onForSeconds}}</td>
-    </tr>
+    <thead><th>Light</th><th>Wait</th><th>On For</th></thead>
+    <tbody>
+        <tr ng-repeat="light in schedule.lights" ng-include="getTemplate(light)"></tr>
+    </tbody>
 </table>
+
+
+<!--
+ templates for a table row, display or edit
+ These are included in the table above using the ng-include and the function getTemplate
+-->
+<script type="text/ng-template" id="display">
+    <td>{{light.id}}</td>
+    <td>{{light.wait}}</td>
+    <td>{{light.onForSeconds}}</td>
+    <td>
+        <button ng-click="editLight(light)">Edit</button>
+        <button ng-click="deleteLight(light)">Del</button>
+    </td>
+</script>
+<script type="text/ng-template" id="edit">
+    <td><input type="text" ng-model="light.id" /></td>
+    <td><input type="text" ng-model="light.wait" /></td>
+    <td><input type="text" ng-model="light.onForSeconds" /></td>
+    <td>
+        <button ng-click="saveLight(light)">Save</button>
+        <button ng-click="reset()">Cancel</button>
+    </td>
+</script>
+
+<button ng-click="addLight()">Add</button>
+<p><input type="submit" value="Save"/></p>
+</form>

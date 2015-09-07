@@ -5,6 +5,10 @@ public class ScheduleItem {
     private int wait;
     private int onForSeconds;
 
+    public ScheduleItem() {
+
+    }
+
     public ScheduleItem(String id, int wait, int onForSeconds) {
         this.id = id;
         this.wait = wait;

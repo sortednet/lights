@@ -21,6 +21,10 @@ public class Schedule {
         this(id, name, description, new ArrayList<ScheduleItem>());
     }
 
+    public Schedule() {
+
+    }
+
     public String getId() {
         return id;
     }

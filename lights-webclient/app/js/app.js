@@ -1,15 +1,9 @@
 'use strict'
 
-//var schedules = [ {"name": "notloaded"}];
-//
-//$http.get('schedules/all_schedules.json').success(function(data) {
-//    schedules = data;
-//    alert("Got data");
-//});
-
 var lightsApp = angular.module('lightsApp', [
     'ngRoute',
-    'lightControllers'
+    'lightControllers',
+    'lightServices'
 ]);
 
 lightsApp.config(['$routeProvider',
