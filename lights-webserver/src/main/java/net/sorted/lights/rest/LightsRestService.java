@@ -27,7 +27,7 @@ public class LightsRestService {
         return lights;
     }
 
-    @RequestMapping(value = "/light", method = { RequestMethod.PUT})
+    @RequestMapping(value = "/lights", method = { RequestMethod.PUT})
     public void switchLight(@RequestParam String name, boolean on) {
 
         System.out.println("Turn light " + name + " to " + ((on) ? "on" : "off"));

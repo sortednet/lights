@@ -21,16 +21,19 @@ lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'S
 
         $scope.updateSchedule = function() {
             console.log("Updating schedule "+$scope.schedule.id+" with description "+$scope.schedule.description);
-            console.log("update fn "+$scope.schedule.$update);
-            //$scope.schedule.$save();
+            //console.log("update fn "+$scope.schedule.$update);
             $scope.schedule.$update({ id:$scope.schedule.id}, function() {
                 console.log("updated");
             })
+            //$scope.schedule.$save();
         }
 
         $scope.getTemplate = function (light) {
-            if (light.id === $scope.editing.id) return 'edit';
-            else return 'display';
+            if (light.id === $scope.editing.id) {
+                return 'edit';
+            } else {
+                return 'display';
+            }
         };
 
         $scope.editLight = function (light) {
@@ -49,9 +52,9 @@ lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'S
             $scope.editing = $scope.schedule.lights[ $scope.schedule.lights.length -1];
         };
 
-        $scope.saveLight = function (idx) {
+        $scope.saveLight = function (light) {
             console.log("Saving light");
-            $scope.schedule.lights[idx] = angular.copy($scope.editing);
+            $scope.schedule.lights[light] = angular.copy($scope.editing);
             $scope.updateSchedule();
             $scope.reset();
         };
