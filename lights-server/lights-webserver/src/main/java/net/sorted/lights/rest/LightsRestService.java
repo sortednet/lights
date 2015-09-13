@@ -33,9 +33,4 @@ public class LightsRestService {
         System.out.println("Turn light " + name + " to " + ((on) ? "on" : "off"));
     }
 
-    @RequestMapping(value = "/lightLevel", method = { RequestMethod.GET})
-    public Integer getLightLevel() {
-
-        return 10;
-    }
 }

@@ -5,7 +5,7 @@
 
     <parent>
         <groupId>net.sorted</groupId>
-        <artifactId>lights</artifactId>
+        <artifactId>lights-server</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
@@ -13,8 +13,8 @@
     <packaging>war</packaging>
 
     <properties>
-        <java.version>1.8</java.version>
         <org.springframework.security-version>4.0.1.RELEASE</org.springframework.security-version>
+        <oracle-driver.version>11.2.0.3</oracle-driver.version>
     </properties>
 
     <!-- Spring boot normally wants the parent pom to be spring-boot-starter-parent, this allows a different parent -->
@@ -40,10 +40,20 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- The server side of the code (DB access, hardware control etc) -->
+        <!-- The domain objects, repositories etc -->
         <dependency>
             <groupId>net.sorted</groupId>
-            <artifactId>lights-server</artifactId>
+            <artifactId>lights-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sorted</groupId>
+            <artifactId>lights-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sorted</groupId>
+            <artifactId>lights-dbmigrations</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -51,6 +61,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
@@ -66,6 +80,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
     <build>

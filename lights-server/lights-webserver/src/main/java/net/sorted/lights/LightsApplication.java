@@ -5,7 +5,11 @@ import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+@ComponentScan("net.sorted.lights")
+@EnableJpaRepositories(basePackages = {"net.sorted.lights.repository"})
 @SpringBootApplication
 public class LightsApplication {
 
