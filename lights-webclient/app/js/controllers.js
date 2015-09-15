@@ -10,57 +10,57 @@ lightControllers.controller('ScheduleListCtrl', ['$scope', 'Schedules',
     }
 ]);
 
-lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'Schedules',
-    function($scope, $routeParams, Schedules) {
+lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'Schedules', 'Lights',
+    function($scope, $routeParams, Schedules, Lights) {
 
-        $scope.editing = {}
+        $scope.editingId = null;
 
         Schedules.get({id: $routeParams.scheduleId}, function(schedule) {
             $scope.schedule = schedule;
         });
 
+        $scope.allLights = Lights.query();
+
         $scope.updateSchedule = function() {
             console.log("Updating schedule "+$scope.schedule.id+" with description "+$scope.schedule.description);
-            //console.log("update fn "+$scope.schedule.$update);
             $scope.schedule.$update({ id:$scope.schedule.id}, function() {
                 console.log("updated");
             })
-            //$scope.schedule.$save();
         }
 
-        $scope.getTemplate = function (light) {
-            if (light.id === $scope.editing.id) {
+        $scope.getTemplate = function (item) {
+            if (item.id === $scope.editingId) {
                 return 'edit';
             } else {
                 return 'display';
             }
         };
 
-        $scope.editLight = function (light) {
-            $scope.editing = angular.copy(light);
+        $scope.editItem = function (item) {
+            $scope.editingId = item.id;
         };
 
-        $scope.deleteLight = function (light) {
-            var idx = $scope.schedule.lights.indexOf(light);
-            $scope.schedule.lights.splice(idx, 1);
+        $scope.deleteItem = function (item) {
+            var idx = $scope.schedule.items.indexOf(item);
+            $scope.schedule.items.splice(idx, 1);
             $scope.updateSchedule();
             $scope.reset();
         };
 
-        $scope.addLight = function () {
-            $scope.schedule.lights.push({id:-1, wait:0, onForSeconds:0})
-            $scope.editing = $scope.schedule.lights[ $scope.schedule.lights.length -1];
+        $scope.addItem = function () {
+            $scope.schedule.items.push({id:-1, wait:0, onForSeconds:0, scheduleId:$scope.schedule.id})
+            $scope.editingId = $scope.schedule.items[ $scope.schedule.items.length -1].id;
         };
 
-        $scope.saveLight = function (light) {
-            console.log("Saving light");
-            $scope.schedule.lights[light] = angular.copy($scope.editing);
+        $scope.saveItem = function (item) {
+            console.log("Saving schedule item id="+item.id+" with selectedLight id"+$scope.selectedLightId);
+
             $scope.updateSchedule();
             $scope.reset();
         };
 
         $scope.reset = function () {
-            $scope.editing = {};
+            $scope.editingId = null;
         };
     }
 ]);

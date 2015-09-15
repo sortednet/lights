@@ -29,23 +29,22 @@ public class ScheduleRestService {
         ArrayList<Schedule> list = new ArrayList<>();
         Iterable<Schedule> iter = scheduleRepository.findAll();
         iter.forEach((schedule) -> list.add(schedule));
+        System.out.println("Found " + list.size() + " schedules");
+        for (Schedule s : list) {
+            System.out.println("Schedule " + s.getName() + " has " + s.getItems().size() + " items");
+        }
         return list;
     }
 
     @RequestMapping(value = "/schedules/{id}", method = { RequestMethod.GET })
     public Schedule getSchedule(@PathVariable long id) {
-        return scheduleRepository.findOne(id);
+        Schedule s = scheduleRepository.findOne(id);
+        return s;
     }
 
     @RequestMapping(value="/schedules/{id}", method = {RequestMethod.PUT })
     public void updateSchedule(@PathVariable long id, @RequestBody Schedule schedule) {
         System.out.println("Updating schedule " + schedule.getId());
-
-        for (ScheduleItem item : schedule.getLights()) {
-            if (item.getId() < 0) {
-
-            }
-        }
 
         scheduleRepository.save(schedule);
     }

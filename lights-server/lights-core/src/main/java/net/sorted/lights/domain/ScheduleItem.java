@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,17 +25,25 @@ public class ScheduleItem {
     @Column(name="ONFORSECONDS")
     private int onForSeconds;
 
+    @ManyToOne(optional=false)
+    @JoinColumn(name="LIGHT_ID", nullable=false)
+    private Light light;
+
+    @Column(name="SCHEDULE_ID")
+    private Long scheduleId;
+
     public ScheduleItem() {
 
     }
 
-    public ScheduleItem(long id, int wait, int onForSeconds) {
+    public ScheduleItem(Long id, int wait, int onForSeconds, Long scheduleId) {
         this.id = id;
         this.wait = wait;
         this.onForSeconds = onForSeconds;
+        this.scheduleId = scheduleId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -43,5 +53,13 @@ public class ScheduleItem {
 
     public int getOnForSeconds() {
         return onForSeconds;
+    }
+
+    public Long getScheduleId() {
+        return scheduleId;
+    }
+
+    public Light getLight() {
+        return light;
     }
 }

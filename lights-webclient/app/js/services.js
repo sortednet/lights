@@ -7,3 +7,8 @@ lightServices.factory('Schedules', ['$resource',
             'update': { method:'PUT'}
         });
     }]);
+
+lightServices.factory('Lights', ['$resource',
+    function($resource){
+        return $resource('http://localhost:8080/lights');
+    }]);
