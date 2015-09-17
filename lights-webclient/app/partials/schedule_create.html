@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
+            <div><a href="#/lights">Lights</a></div>
+            <div><a href="#/schedules">Schedules</a></div>
+
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+            <form ng-submit="createSchedule()" class="form-horizontal">
+                <fieldset>
+                    <legend>Schedule Events</legend>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="name" ng-model="schedule.name" tabindex="1" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="desc">Description</label>
+                        <div class="col-sm-10">
+                            <input id="desc" type="text" ng-model="schedule.description" tabindex="2" class="form-control"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+            <p><input type="submit" value="Create"/></p>
+            </form>
+        </div>
+    </div>
+</div>

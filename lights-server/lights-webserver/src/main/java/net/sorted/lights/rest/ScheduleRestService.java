@@ -50,11 +50,10 @@ public class ScheduleRestService {
     }
 
     @RequestMapping(value="/schedules", method = {RequestMethod.POST })
-    @ResponseBody
-    public Schedule createSchedule(@RequestBody Schedule schedule) {
+    public void createSchedule(@RequestBody Schedule schedule) {
         System.out.println("Creating schedule "+schedule.getName());
 
-        return schedule;
+        scheduleRepository.save(schedule);
     }
 
 }

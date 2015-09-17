@@ -1,10 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
+            <div><a href="#/lights">Lights</a></div>
+            <div><a href="#/schedules">Schedules</a></div>
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+            Schedules
+            <ul class="schedules">
+                <li ng-repeat="schedule in schedules" >
+                    <span><a href="#/schedules/{{schedule.id}}">{{schedule.name}}</a></span> <span>{{schedule.description}}</span>
+                </li>
+            </ul>
 
-<H1>Schedule list</H1>
-
-
-<ul >
-    <li ng-repeat="schedule in schedules" >
-        <span>{{schedule.name}}</span>: <span>{{schedule.description}}</span>
-        <a href="#/schedules/{{schedule.id}}">{{schedule.name}}</a>
-    </li>
-</ul>
+            <a href="#/addschedule">Add</a>
+        </div>
+    </div>
+</div>

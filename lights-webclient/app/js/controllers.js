@@ -66,3 +66,19 @@ lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'S
 ]);
 
 
+lightControllers.controller('ScheduleCreateCtrl', ['$scope', '$routeParams', 'Schedules',
+    function($scope, $routeParams, Schedules) {
+
+        $scope.schedule = { id:null, name:"", description:""};
+
+        $scope.createSchedule = function() {
+            console.log("Creating schedule "+$scope.schedule.name+" with description "+$scope.schedule.description);
+            Schedules.save($scope.schedule, function() {
+                console.log("created");
+            })
+        }
+
+    }
+]);
+
+
