@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <LIGHT id="100" name="L1" description="Light 1" />
+    <LIGHT id="101" name="L2" description="Light 2" />
+    <LIGHT id="102" name="L3" description="Light 3" />
+    <LIGHT id="103" name="L4" description="Light 4" />
+</dataset>

@@ -15,6 +15,7 @@
 
     <properties>
         <org.springframework.security-version>4.0.1.RELEASE</org.springframework.security-version>
+        <spring.boot.version>1.2.5.RELEASE</spring.boot.version>
         <spring.data.version>Gosling-RELEASE</spring.data.version>
         <oracle-driver.version>11.2.0.3</oracle-driver.version>
         <flyway.version>3.2.1</flyway.version>
@@ -28,14 +29,12 @@
 
     <dependencyManagement>
         <dependencies>
-
-            <!-- DB dependencies -->
             <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-releasetrain</artifactId>
-                <version>${spring.data.version}</version>
-                <scope>import</scope>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <type>pom</type>
+                <version>${spring.boot.version}</version>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>javax.persistence</groupId>
@@ -146,6 +145,8 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
+
+
     </dependencies>
 
     <repositories>

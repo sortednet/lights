@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <SCHEDULE id="1" name="s1" description="schedule one" />
+    <SCHEDULE id="2" name="s2" description="schedule two" />
+
+    <SCHEDULE_ITEM id="101" wait="1" onForSeconds="11" light_id="100" schedule_id="1" />
+    <SCHEDULE_ITEM id="102" wait="2" onForSeconds="22" light_id="101" schedule_id="1" />
+    <SCHEDULE_ITEM id="103" wait="3" onForSeconds="33" light_id="102" schedule_id="1" />
+
+</dataset>

@@ -35,15 +35,17 @@ create table schedule_item (
 create sequence schedule_seq start with 1000;
 create sequence schedule_item_seq start with 1000;
 
-insert into light (id, name, description) values ('0', 'Tree fern spot', 'Spotlight hightlighting the tree fern');
-insert into light (id, name, description) values ('1', 'Small bed 1', 'Low light in the small bed');
-insert into light (id, name, description) values ('2', 'Rock spot', 'Spot light on the rock unter tree fern');
 
-insert into schedule (id,name,description) values ('0', 'summer', 'summer schedule');
-insert into schedule (id,name,description) values ('1', 'winter', 'winter schedule');
-
-insert into schedule_item (ID, ONFORSECONDS, WAIT,  SCHEDULE_ID, LIGHT_ID ) VALUES ('0', 5000, 10 , '0', '0' );
-insert into schedule_item (ID, ONFORSECONDS, WAIT, SCHEDULE_ID, LIGHT_ID ) VALUES ( '1', 3000, 190 , '0', '1' );
-
-insert into schedule_item (ID, ONFORSECONDS, WAIT,  SCHEDULE_ID, LIGHT_ID ) VALUES ('2', 6666, 111 , '1', '2' );
-insert into schedule_item (ID, ONFORSECONDS, WAIT, SCHEDULE_ID, LIGHT_ID ) VALUES ( '3', 7777, 222 , '1', '0' );
+-- Test data - need to move this outand work out doing test data properly, dbusit or something like that
+-- insert into light (id, name, description) values ('0', 'Tree fern spot', 'Spotlight hightlighting the tree fern');
+-- insert into light (id, name, description) values ('1', 'Small bed 1', 'Low light in the small bed');
+-- insert into light (id, name, description) values ('2', 'Rock spot', 'Spot light on the rock unter tree fern');
+--
+-- insert into schedule (id,name,description) values ('0', 'summer', 'summer schedule');
+-- insert into schedule (id,name,description) values ('1', 'winter', 'winter schedule');
+--
+-- insert into schedule_item (ID, ONFORSECONDS, WAIT,  SCHEDULE_ID, LIGHT_ID ) VALUES ('0', 5000, 10 , '0', '0' );
+-- insert into schedule_item (ID, ONFORSECONDS, WAIT, SCHEDULE_ID, LIGHT_ID ) VALUES ( '1', 3000, 190 , '0', '1' );
+--
+-- insert into schedule_item (ID, ONFORSECONDS, WAIT,  SCHEDULE_ID, LIGHT_ID ) VALUES ('2', 6666, 111 , '1', '2' );
+-- insert into schedule_item (ID, ONFORSECONDS, WAIT, SCHEDULE_ID, LIGHT_ID ) VALUES ( '3', 7777, 222 , '1', '0' );

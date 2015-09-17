@@ -24,16 +24,11 @@ public class LightsRestService {
     @RequestMapping(value = "/lights", method = { RequestMethod.GET})
     public List<Light> getLights() {
 
-        //return lightRepository.findAll();
         ArrayList<Light> list = new ArrayList<>();
         Iterable<Light> iter = lightRepository.findAll();
         iter.forEach((light) -> list.add(light));
-//        System.out.println("Found " + list.size() + " lights");
-//        for (Light light : list) {
-//            System.out.println("Light " + light.getName() + " has " + light.getLights().size() + " items");
-//        }
-        return list;
 
+        return list;
     }
 
     @RequestMapping(value = "/lights", method = { RequestMethod.PUT})
