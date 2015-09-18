@@ -1,35 +1,28 @@
-package net.sorted.lights.domain;
+package net.sorted.lights.clientdomain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="light")
-public class Light {
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="light_seq")
-    @SequenceGenerator(name="light_seq", sequenceName="light_seq", allocationSize=1)
+public class ClientLight {
     private Long id;
-
-    @Column(name="name")
     private String name;
-
-    @Column(name="description")
     private String description;
+    private boolean on;
 
 
-    public Light(Long id, String name, String description) {
+    public ClientLight(Long id, String name, String description, boolean on) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.on = on;
     }
 
-    protected Light() {
+    protected ClientLight() {
 
     }
 
@@ -45,12 +38,17 @@ public class Light {
         return name;
     }
 
+    public boolean isOn() {
+        return on;
+    }
+
     @Override
     public String toString() {
-        return "Light{" +
+        return "ClientLight{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", on=" + on +
                 '}';
     }
 }

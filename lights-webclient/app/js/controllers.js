@@ -25,7 +25,8 @@ lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'S
             console.log("Updating schedule "+$scope.schedule.id+" with description "+$scope.schedule.description);
             $scope.schedule.$update({ id:$scope.schedule.id}, function() {
                 console.log("updated");
-            })
+                Schedules.get({id: $routeParams.scheduleId}, function(schedule) { $scope.schedule = schedule; });
+            });
         }
 
         $scope.getTemplate = function (item) {
@@ -66,17 +67,19 @@ lightControllers.controller('ScheduleDetailsCtrl', ['$scope', '$routeParams', 'S
 ]);
 
 
-lightControllers.controller('ScheduleCreateCtrl', ['$scope', '$routeParams', 'Schedules',
-    function($scope, $routeParams, Schedules) {
+lightControllers.controller('LightsCtrl', ['$scope', '$routeParams', 'Lights',
+    function($scope, $routeParams, Lights) {
 
-        $scope.schedule = { id:null, name:"", description:""};
+        $scope.lights = Lights.query();
 
-        $scope.createSchedule = function() {
-            console.log("Creating schedule "+$scope.schedule.name+" with description "+$scope.schedule.description);
-            Schedules.save($scope.schedule, function() {
-                console.log("created");
-            })
-        }
+        $scope.toggleSwitch = function(index) {
+            console.log("Toggle light "+!$scope.lights[index]+" to "+!$scope.lights[index].on);
+
+            $scope.lights[index].on = !$scope.lights[index].on;
+            $scope.lights[index].$update({ id:$scope.lights[index].id}, function() {
+                console.log("updated light");
+            });
+        };
 
     }
 ]);

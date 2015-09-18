@@ -62,4 +62,15 @@ public class ScheduleItem {
     public Light getLight() {
         return light;
     }
+
+    @Override
+    public String toString() {
+        return "ScheduleItem{" +
+                "id=" + id +
+                ", wait=" + wait +
+                ", onForSeconds=" + onForSeconds +
+                ", light=" + light +
+                ", scheduleId=" + scheduleId +
+                '}';
+    }
 }

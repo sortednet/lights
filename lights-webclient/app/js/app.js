@@ -21,7 +21,11 @@ lightsApp.config(['$routeProvider',
                 templateUrl: 'partials/schedule_details.html',
                 controller: 'ScheduleDetailsCtrl'
             }).
+            when('/lights', {
+                templateUrl: 'partials/lights.html',
+                controller: 'LightsCtrl'
+            }).
             otherwise({
-                redirectTo: '/schedules'
+                redirectTo: '/lights'
             });
     }]);

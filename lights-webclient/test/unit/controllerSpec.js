@@ -113,4 +113,21 @@ describe('Lights controllers', function() {
             expect(scope.editingId == -1);
         });
     });
+
+    describe('ScheduleCreateCtrl', function () {
+        var scope, ctrl, $httpBackend;
+
+
+        // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
+        // This allows us to inject a service but then attach it to a variable
+        // with the same name as the service in order to avoid a name conflict.
+        beforeEach(inject(function (_$httpBackend_, $rootScope, $controller) {
+            $httpBackend = _$httpBackend_;
+            $httpBackend.expectPOST('http://localhost:8080/schedules');
+
+            scope = $rootScope.$new();
+            ctrl = $controller('ScheduleCreateCtrl', {$scope: scope});
+        }));
+
+    });
 });

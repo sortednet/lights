@@ -50,6 +50,6 @@ public class LightRepositoryTest {
         Light l = lightRepository.findOne(101l);
         assertNotNull(l);
         assertThat(l.getName(), is("L2"));
-        assertThat(l.getDescription(), is("Light 2"));
+        assertThat(l.getDescription(), is("ClientLight 2"));
     }
 }

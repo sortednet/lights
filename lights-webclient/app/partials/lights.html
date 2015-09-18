@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
+            <div><a href="#/lights">Lights</a></div>
+            <div><a href="#/schedules">Schedules</a></div>
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+            Light switches
+
+            <div ng-repeat="light in lights track by $index" >
+                <span ng-switch="light.on">
+                    <span ng-switch-when="true"><img  ng-src="img/Off.png" ng-click="toggleSwitch($index)"/>{{light.name}}</span>
+                    <span ng-switch-when="false"><img  ng-src="img/On.png" ng-click="toggleSwitch($index)"/>{{light.name}}</span>
+                </span>
+            </div>
+
+            <div>Light Level</div>
+        </div>
+    </div>
+</div>

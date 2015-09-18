@@ -66,4 +66,14 @@ public class Schedule implements Serializable {
     public List<ScheduleItem> getItems() {
         return items;
     }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", items=" + items +
+                '}';
+    }
 }

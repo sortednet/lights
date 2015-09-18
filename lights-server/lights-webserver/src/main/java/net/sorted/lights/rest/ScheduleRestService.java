@@ -44,7 +44,7 @@ public class ScheduleRestService {
 
     @RequestMapping(value="/schedules/{id}", method = {RequestMethod.PUT })
     public void updateSchedule(@PathVariable long id, @RequestBody Schedule schedule) {
-        System.out.println("Updating schedule " + schedule.getId());
+        System.out.println("Updating schedule " + schedule);
 
         scheduleRepository.save(schedule);
     }
