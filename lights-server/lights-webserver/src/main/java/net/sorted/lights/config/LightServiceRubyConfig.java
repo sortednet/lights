@@ -5,8 +5,10 @@ import net.sorted.lights.services.LightServiceArduino;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
+@Profile("production")
 @ConfigurationProperties(locations="classpath:lightservice.properties", prefix="lightservice.ruby", ignoreUnknownFields = false)
 public class LightServiceRubyConfig {
 
@@ -21,8 +23,8 @@ public class LightServiceRubyConfig {
         this.usb = usb;
     }
 
-    @Bean
-    public LightService lightService() {
-        return new LightServiceArduino(switchScriptPath, usb);
-    }
+//    @Bean
+//    public LightService lightService() {
+//        return new LightServiceArduino(switchScriptPath, usb);
+//    }
 }

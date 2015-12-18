@@ -15,42 +15,22 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Commented out log4j stuff as could not get working in tomcat -->
             <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-framework-bom</artifactId>-->
-                <!--<version>4.2.0.RC1</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
+                <!--<groupId>org.apache.logging.log4j</groupId>-->
+                <!--<artifactId>log4j-api</artifactId>-->
+                <!--<version>2.3</version>-->
             <!--</dependency>-->
-
-            <!-- hook up slf4j with Log4J2 -->
-            <!--
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.12</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-slf4j-impl</artifactId>
-                <version>2.3</version>
-            </dependency>
-            -->
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>com.lmax</groupId>
-                <artifactId>disruptor</artifactId>
-                <version>3.2.0</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.logging.log4j</groupId>-->
+                <!--<artifactId>log4j-core</artifactId>-->
+                <!--<version>2.3</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.lmax</groupId>-->
+                <!--<artifactId>disruptor</artifactId>-->
+                <!--<version>3.2.0</version>-->
+            <!--</dependency>-->
 
             <!-- apache commons -->
             <dependency>
@@ -85,18 +65,20 @@
                     <artifactId>log4j-slf4j-impl</artifactId>
                 </dependency>
         -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.lmax</groupId>
-            <artifactId>disruptor</artifactId>
-        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-api</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-core</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.lmax</groupId>-->
+            <!--<artifactId>disruptor</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>commons-collections</groupId>

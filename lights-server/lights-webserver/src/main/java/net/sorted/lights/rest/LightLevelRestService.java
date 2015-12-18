@@ -11,8 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LightLevelRestService {
 
+    private List<Integer> levels = new ArrayList<>();
+
+    public LightLevelRestService() {
+        levels.add(10);
+    }
+
     @RequestMapping(value = "/lightLevel", method = { RequestMethod.GET})
-    public Integer getLightLevel() {
-        return 10;
+    public List<Integer> getLightLevel() {
+        return levels;
     }
 }

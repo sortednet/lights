@@ -8,6 +8,10 @@ import net.sorted.lights.domain.Schedule;
 import net.sorted.lights.domain.ScheduleItem;
 import net.sorted.lights.repository.ScheduleRepository;
 import org.apache.commons.collections.IteratorUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(maxAge=3600)
 @RestController
 public class ScheduleRestService {
+    //private static final Logger log = LogManager.getLogger(ScheduleRestService.class);
+    private Log log = LogFactory.getLog(ScheduleRestService.class);
 
     @Autowired
     private ScheduleRepository scheduleRepository;
@@ -27,12 +33,11 @@ public class ScheduleRestService {
     public List<Schedule> getAllSchedules() {
 
         ArrayList<Schedule> list = new ArrayList<>();
+        System.out.println("finding all schedules");
         Iterable<Schedule> iter = scheduleRepository.findAll();
         iter.forEach((schedule) -> list.add(schedule));
-        System.out.println("Found " + list.size() + " schedules");
-        for (Schedule s : list) {
-            System.out.println("Schedule " + s.getName() + " has " + s.getItems().size() + " items");
-        }
+        log.info("Returning " + list.size() + "schedules");
+                System.out.println("Returning " + list.size() + " schedules");
         return list;
     }
 
@@ -44,14 +49,14 @@ public class ScheduleRestService {
 
     @RequestMapping(value="/schedules/{id}", method = {RequestMethod.PUT })
     public void updateSchedule(@PathVariable long id, @RequestBody Schedule schedule) {
-        System.out.println("Updating schedule " + schedule);
+        log.info("Updating schedule " + schedule);
 
         scheduleRepository.save(schedule);
     }
 
     @RequestMapping(value="/schedules", method = {RequestMethod.POST })
     public void createSchedule(@RequestBody Schedule schedule) {
-        System.out.println("Creating schedule "+schedule.getName());
+        log.info("Creating schedule " + schedule.getName());
 
         scheduleRepository.save(schedule);
     }

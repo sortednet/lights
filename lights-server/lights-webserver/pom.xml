@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>lights-webserver</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <org.springframework.security-version>4.0.1.RELEASE</org.springframework.security-version>
@@ -32,14 +32,14 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Include the generated js & html files from the client project - unpacked in the plugin below -->
-        <dependency>
-            <groupId>net.sorted</groupId>
-            <artifactId>lights-webclient</artifactId>
-            <version>${project.version}</version>
-            <type>war</type>
-            <scope>runtime</scope>
-        </dependency>
+        <!-- Include the generated js & html files from the client project - unpacked in the war plugin below -->
+        <!--<dependency>-->
+            <!--<groupId>net.sorted</groupId>-->
+            <!--<artifactId>lights-webclient</artifactId>-->
+            <!--<version>${project.version}</version>-->
+            <!--<type>war</type>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
 
         <!-- The domain objects, repositories etc -->
         <dependency>
@@ -67,11 +67,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
+        <!-- set as provided so that this can be packaged as a war -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -81,6 +82,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Dependencies for db unit tests -->
         <dependency>
             <groupId>com.github.springtestdbunit</groupId>
             <artifactId>spring-test-dbunit</artifactId>
@@ -104,21 +107,89 @@
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
         </dependency>
+
+        <!-- Allow property files for spring config -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Constuct a war file -->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>net.sorted</groupId>
+                                    <artifactId>lights-webclient</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <excludes>META-INF</excludes>
+                                    <outputDirectory>${project.build.directory}/classes/public</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
+
+
+            <!-- Repackage as a springboot jar/war -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
+            <!-- Build the docker image -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.3.8</version>
+                <configuration>
+                    <imageName>doug/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <!--<resource> &lt;!&ndash; Copy the expanded war to the docker directory removing the version from the file name &ndash;&gt;-->
+                            <!--<targetPath>/lights-webserver</targetPath>-->
+                            <!--<directory>${project.build.directory}/${project.build.finalName}</directory>-->
+                            <!--&lt;!&ndash;<include>${project.build.finalName}</include>&ndash;&gt;-->
+                        <!--</resource>-->
+                        <resource> <!-- Copy the spring boot jar to dockerfile dir -->
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>

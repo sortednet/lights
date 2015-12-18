@@ -1,0 +1,10 @@
+gardenweb:
+    image: doug/lights-webserver
+    ports:
+        - "8888:8080"
+    links:
+        - gardendb
+gardendb:
+    image: garden_oracle
+    ports:
+        - "1521:1521"
