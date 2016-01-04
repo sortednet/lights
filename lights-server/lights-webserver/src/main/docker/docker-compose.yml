@@ -6,5 +6,7 @@ gardenweb:
         - gardendb
 gardendb:
     image: garden_oracle
+    domainname: sorted.net
+    hostname: lights-db
     ports:
         - "1521:1521"
