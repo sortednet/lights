@@ -1,12 +1,12 @@
 gardenweb:
-    image: doug/lights-webserver
+    image: sortednet/lights-webserver
     ports:
         - "8888:8080"
     links:
-        - gardendb
-gardendb:
-    image: garden_oracle
-    domainname: sorted.net
-    hostname: lights-db
+        - lights-db.sorted.net
+
+
+lights-db.sorted.net:
+    image: sortednet/lights-db
     ports:
         - "1521:1521"

@@ -105,6 +105,7 @@
     <modules>
         <module>lights-server</module>
         <module>lights-webclient</module>
+        <module>lights-db</module>
     </modules>
 
 

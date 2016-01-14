@@ -180,7 +180,7 @@
                             <goal>build</goal>
                         </goals>
                         <configuration>
-                            <imageName>doug/lights-webserver</imageName>
+                            <imageName>sortednet/lights-webserver</imageName>
                             <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                             <resources>
                                 <!--<resource> &lt;!&ndash; Copy the expanded war to the docker directory removing the version from the file name &ndash;&gt;-->
@@ -194,7 +194,7 @@
                                     <include>${project.build.finalName}.jar</include>
                                 </resource>
                             </resources>
-                            <registryUrl></registryUrl>
+                            <!--<registryUrl></registryUrl>-->
                         </configuration>
                     </execution>
                 </executions>
